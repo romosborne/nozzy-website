@@ -1,7 +1,10 @@
 @import 'variables.scss';
 @import 'mixins.scss';
+
+@import '/img/fonts/nimbussansl_regular_macroman/stylesheet.css';
+
 body {
-  font-family: 'Lora', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: 'nimbus_sans_lregular', Verdana, Helvetica, Arial, sans-serif;
 
   position: relative;
 
@@ -23,12 +26,11 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  font-weight: 700;
+  font-weight: 500;
 
   margin: 0 0 35px;
 
-  letter-spacing: 1px;
+  letter-spacing: 0.2em;
 }
 
 p {
@@ -59,8 +61,6 @@ a {
 }
 
 #mainNav {
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-
   margin-bottom: 0;
 
   border-bottom: 1px solid fade-out(white, .7);
@@ -74,13 +74,15 @@ a {
     border: 1px solid white;
   }
   .navbar-brand {
-    font-weight: 700;
+    font-weight: 400;
+    letter-spacing: 0.2em;
   }
   a {
     color: white;
   }
   .navbar-nav {
     .nav-item {
+      letter-spacing:0.2em;
       -webkit-transition: background 0.3s ease-in-out;
       -moz-transition: background 0.3s ease-in-out;
       transition: background 0.3s ease-in-out;
@@ -114,6 +116,12 @@ a {
       border-bottom: 1px solid fade-out(white, .7);
       background: black;
     }
+    .nav-link{
+      
+      padding-left:20px;
+      padding-right:20px;
+
+    }
     .nav-link.active {
       outline: none;
       background-color: rgba(white, .3);
@@ -134,7 +142,7 @@ a {
   text-align: center;
 
   color: white;
-  background: url('../img/intro-bg.jpg') no-repeat bottom center scroll;
+  background: url('../img/bg.jpg') no-repeat bottom center scroll;
   background-color: black;
   -webkit-background-size: cover;
   -moz-background-size: cover;

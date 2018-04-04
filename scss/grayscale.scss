@@ -23,13 +23,12 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Cabin', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-weight: 700;
 
   margin: 0 0 35px;
 
   letter-spacing: 1px;
-  text-transform: uppercase;
 }
 
 p {
@@ -60,11 +59,9 @@ a {
 }
 
 #mainNav {
-  font-family: 'Cabin', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 
   margin-bottom: 0;
-
-  text-transform: uppercase;
 
   border-bottom: 1px solid fade-out(white, .7);
   background-color: black;
@@ -222,7 +219,7 @@ a {
 }
 
 .btn {
-  font-family: 'Cabin', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-weight: 400;
 
   -webkit-transition: all 0.3s ease-in-out;

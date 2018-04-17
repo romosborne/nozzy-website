@@ -42,12 +42,12 @@ a {
   -webkit-transition: all 0.2s ease-in-out;
   -moz-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
-  color: #42DCA3;
+  color: #eee;
 }
 
 a:focus, a:hover {
   text-decoration: none;
-  color: #1d9b6c;
+  color: #bbbbbb;
 }
 
 #mainNav {
@@ -215,26 +215,23 @@ a:focus, a:hover {
 }
 
 .btn {
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  font-weight: 400;
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
-  text-transform: uppercase;
   border-radius: 0;
 }
 
 .btn-default {
-  color: #42DCA3;
-  border: 1px solid #42DCA3;
+  color: #eee;
+  border: 1px solid #eee;
   background-color: transparent;
 }
 
 .btn-default:focus, .btn-default:hover {
   color: black;
-  border: 1px solid #42DCA3;
+  border: 1px solid #eee;
   outline: none;
-  background-color: #42DCA3;
+  background-color: #eee;
 }
 
 ul.banner-social-buttons {

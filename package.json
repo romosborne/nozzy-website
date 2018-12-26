@@ -30,11 +30,11 @@
     "font-awesome": "4.7.0",
     "jquery": "3.3.1",
     "jquery.easing": "^1.4.1",
-    "npm": "^5.8.0"
+    "npm": "^6.5.0"
   },
   "devDependencies": {
-    "browser-sync": "2.23.6",
-    "gulp": "^3.9.1",
+    "browser-sync": "^2.26.3",
+    "gulp": "^4.0.0",
     "gulp-clean-css": "3.9.2",
     "gulp-header": "2.0.1",
     "gulp-rename": "^1.2.2",

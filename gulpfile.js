@@ -63,7 +63,7 @@ gulp.task('css:compile', function() {
 });
 
 // Minify CSS
-gulp.task('css:minify', ['css:compile'], function() {
+gulp.task('css:minify', gulp.series('css:compile', function() {
     return gulp.src([
         './css/*.css',
         '!./css/*.min.css'
@@ -74,10 +74,10 @@ gulp.task('css:minify', ['css:compile'], function() {
         }))
         .pipe(gulp.dest('./css'))
         .pipe(browserSync.stream());
-});
+}));
 
 // CSS
-gulp.task('css', ['css:compile', 'css:minify']);
+gulp.task('css', gulp.series(gulp.parallel('css:compile', 'css:minify'), function(){}));
 
 // Minify JavaScript
 gulp.task('js:minify', function() {
@@ -94,7 +94,7 @@ gulp.task('js:minify', function() {
 });
 
 // JS
-gulp.task('js', ['js:minify']);
+gulp.task('js', gulp.series('js:minify', function(){}));
 
 // Images
 gulp.task('img', function() {
@@ -118,7 +118,7 @@ gulp.task('img', function() {
 });
 
 // Default task
-gulp.task('default', ['css', 'js', 'img', 'vendor']);
+gulp.task('default', gulp.series(gulp.parallel('css', 'js', 'img', 'vendor'), function(){}));
 
 // Configure the browserSync task
 gulp.task('browserSync', function() {
@@ -130,8 +130,8 @@ gulp.task('browserSync', function() {
 });
 
 // Dev task
-gulp.task('dev', ['css', 'js', 'img', 'browserSync'], function() {
+gulp.task('dev', gulp.series(gulp.parallel('css', 'js', 'img', 'browserSync'), function() {
     gulp.watch('./scss/*.scss', ['css']);
     gulp.watch('./js/*.js', ['js']);
     gulp.watch('./*.html', browserSync.reload);
-});
+}));

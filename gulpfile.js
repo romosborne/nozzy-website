@@ -103,9 +103,9 @@ function img() {
     return gulp.src('img-src/bg.jpg')
         .pipe(responsive({
             'bg.jpg': [
-                {width: '20%', rename: {suffix: '@1x'}},
-                {width: '40%', rename: {suffix: '@2x'}},
-                {width: '60%', rename: {suffix: '@3x'}},
+                // {width: '20%', rename: {suffix: '@1x'}},
+                // {width: '40%', rename: {suffix: '@2x'}},
+                // {width: '60%', rename: {suffix: '@3x'}},
                 {width: '80%', rename: {suffix: '@4x'}},
                 {width: '100%', rename: {suffix: '@5x'}}
             ]
@@ -148,6 +148,7 @@ function browserSyncReload(done) {
 function watchFiles() {
   gulp.watch("./scss/**/*", css);
   gulp.watch(["./js/**/*.js", "!./js/*.min.js"], js);
+  gulp.watch("./img-src/*", img);
   gulp.watch("./**/*.html", browserSyncReload);
 }
 

@@ -61,3 +61,6 @@ typings/
 .next
 /.vs/config/applicationhost.config
 /.vs/slnx.sqlite
+
+# remove generated img
+/img/*@*.jpg

@@ -142,16 +142,10 @@ a {
   background: no-repeat bottom center scroll;
   background-image: url('/img/bg@5x.jpg');
   background-image: -webkit-image-set(
-    url('/img/bg@1x.jpg') 1x,
-    url('/img/bg@2x.jpg') 2x,
-    url('/img/bg@3x.jpg') 3x,
     url('/img/bg@4x.jpg') 4x,
     url('/img/bg@5x.jpg') 5x
   );
   background-image: image-set(
-    url('/img/bg@1x.jpg') 1x,
-    url('/img/bg@2x.jpg') 2x,
-    url('/img/bg@3x.jpg') 3x,
     url('/img/bg@4x.jpg') 4x,
     url('/img/bg@5x.jpg') 5x
   );
@@ -210,8 +204,8 @@ a {
 }
 
 .content-section {
-  padding-top: 150px;
-  padding-bottom: 150px;
+  padding-top: 100px;
+  padding-bottom: 100px;
 }
 
 .download-section {
@@ -224,14 +218,36 @@ a {
   background-size: cover;
 }
 
+.happy-section {
+  color: white;
+  min-height:400px;
+  background-color: black;
+  background: url('../img/bghappy.jpg') no-repeat center center scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.hair-section {
+  color: white;
+  min-height:400px;
+  background-color: black;
+  background: url('../img/bghair.jpg') no-repeat center center scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
 #map {
   width: 100%;
   height: 300px;
 }
 @media(min-width:992px) {
   .content-section {
-    padding-top: 200px;
-    padding-bottom: 200px;
+    padding-top: 100px;
+    padding-bottom: 100px;
   }
   #map {
     height: 350px;

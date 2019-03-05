@@ -64,3 +64,6 @@ typings/
 
 # remove generated img
 /img/*@*.jpg
+
+# Ignore generated website
+public

@@ -220,13 +220,31 @@ a {
 
 .happy-section {
   color: white;
-  min-height:400px;
   background-color: black;
   background: url('../img/bghappy.jpg') no-repeat center center scroll;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+}
+
+
+@media(max-width:768px) {
+  .happy-section {
+    min-height:200px;
+  }
+}
+
+@media(min-width:768px) and (max-width: 992px) {
+  .happy-section {
+    min-height:300px;
+  }
+}
+
+@media(min-width:768px) {
+  .happy-section {
+    min-height:400px;
+  }
 }
 
 .hair-section {

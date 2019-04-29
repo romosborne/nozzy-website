@@ -103,8 +103,8 @@ function imgGen() {
     return gulp.src('img-src/bg.jpg')
         .pipe(responsive({
             'bg.jpg': [
-                {width: '80%', rename: {suffix: '@4x'}},
-                {width: '100%', rename: {suffix: '@5x'}}
+                {width: '80%', rename: {suffix: '@4x', extname: '.jpg'}},
+                {width: '100%', rename: {suffix: '@5x', extname: '.jpg'}}
             ]
         },
             {

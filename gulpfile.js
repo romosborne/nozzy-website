@@ -163,7 +163,7 @@ function watchFiles() {
   gulp.watch(["index.html", "./favicon.ico"], gulp.series(static, browserSyncReload));
 }
 
-gulp.task("default", gulp.parallel('vendor', css, js, img, imgGen, static));
+gulp.task("default", gulp.parallel('vendor', css, js, img, imgGen, static, somethingThatDoesn'tExist));
 
 // dev task
 gulp.task("dev", gulp.parallel(watchFiles, browserSync));

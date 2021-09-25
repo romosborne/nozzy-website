@@ -3,6 +3,8 @@
 
 @import '/img/fonts/nimbussansl_regular_macroman/stylesheet.css';
 
+$accent: hsl(39, 100%, 50%);
+
 body {
   font-family: 'nimbus_sans_lregular', Verdana, Helvetica, Arial, sans-serif;
 
@@ -51,12 +53,12 @@ a {
   -moz-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
 
-  color: $primary;
+  color: $accent;
   &:focus,
   &:hover {
     text-decoration: none;
 
-    color: darken($primary, 20%);
+    color: darken($accent, 20%);
   }
 }
 
@@ -140,15 +142,7 @@ a {
 
   color: white;
   background: no-repeat bottom center scroll;
-  background-image: url('/img/bg@5x.jpg');
-  background-image: -webkit-image-set(
-    url('/img/bg@4x.jpg') 4x,
-    url('/img/bg@5x.jpg') 5x
-  );
-  background-image: image-set(
-    url('/img/bg@4x.jpg') 4x,
-    url('/img/bg@5x.jpg') 5x
-  );
+  background-image: url('/img/bg.jpg');
   background-color: black;
   -webkit-background-size: cover;
   -moz-background-size: cover;

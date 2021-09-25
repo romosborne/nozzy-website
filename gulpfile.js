@@ -2,14 +2,14 @@
 // const autoprefixer = require("gulp-autoprefixer");
 const browsersync = require("browser-sync").create();
 const cleanCSS = require("gulp-clean-css");
-const gulp = require("gulp");
+const {src, dest, watch, series, parallel } = require("gulp");
 const header = require("gulp-header");
 // const plumber = require("gulp-plumber");
 const rename = require("gulp-rename");
-const sass = require("gulp-sass");
+const sass = require("gulp-sass")(require('sass'));
 const uglify = require("gulp-uglify");
 const pkg = require('./package.json');
-const responsive = require('gulp-responsive')
+const imagemin = require('gulp-imagemin')
 
 // Set the banner content
 const banner = ['/*!\n',
@@ -21,43 +21,42 @@ const banner = ['/*!\n',
 ].join('');
 
 // Copy third party libraries from /node_modules into /vendor
-gulp.task('vendor', function(cb) {
+function vendor(done) {
 
   // Bootstrap
-  gulp.src([
+  src([
       './node_modules/bootstrap/dist/**/*',
       '!./node_modules/bootstrap/dist/css/bootstrap-grid*',
       '!./node_modules/bootstrap/dist/css/bootstrap-reboot*'
     ])
-    .pipe(gulp.dest('./public/vendor/bootstrap'))
+    .pipe(dest('./public/vendor/bootstrap'))
 
   // Font Awesome
-  gulp.src([
+  src([
       './node_modules/font-awesome/**/*',
     ])
-    .pipe(gulp.dest('./public/vendor/font-awesome'))
+    .pipe(dest('./public/vendor/font-awesome'))
 
   // jQuery
-  gulp.src([
+  src([
       './node_modules/jquery/dist/*',
       '!./node_modules/jquery/dist/core.js'
     ])
-    .pipe(gulp.dest('./public/vendor/jquery'))
+    .pipe(dest('./public/vendor/jquery'))
 
   // jQuery Easing
-  gulp.src([
+  src([
       './node_modules/jquery.easing/*.js'
     ])
-    .pipe(gulp.dest('./public/vendor/jquery-easing'))
+    .pipe(dest('./public/vendor/jquery-easing'))
 
-  cb();
+  done();
+}
 
-});
 
 // CSS task
 function css() {
-  return gulp
-    .src("./scss/*.scss")
+  return src("./scss/*.scss")
     // .pipe(plumber())
     .pipe(sass({
       outputStyle: "expanded"
@@ -70,19 +69,18 @@ function css() {
     .pipe(header(banner, {
       pkg: pkg
     }))
-    .pipe(gulp.dest("./public/css"))
+    .pipe(dest("./public/css"))
     .pipe(rename({
       suffix: ".min"
     }))
     .pipe(cleanCSS())
-    .pipe(gulp.dest("./public/css"))
+    .pipe(dest("./public/css"))
     .pipe(browsersync.stream());
 }
 
 // JS task
 function js() {
-  return gulp
-    .src([
+  return src([
       './js/*.js',
       '!./js/*.min.js',
       '!./js/contact_me.js',
@@ -95,50 +93,29 @@ function js() {
     .pipe(rename({
       suffix: '.min'
     }))
-    .pipe(gulp.dest('./public/js'))
+    .pipe(dest('./public/js'))
     .pipe(browsersync.stream());
 }
 
 function imgGen() {
-    return gulp.src('img-src/bg.jpg')
-        .pipe(responsive({
-            'bg.jpg': [
-                {width: '80%', rename: {suffix: '@4x', extname: '.jpg'}},
-                {width: '100%', rename: {suffix: '@5x', extname: '.jpg'}}
-            ]
-        },
-            {
-                quality: 80,
-                progressive: true,
-                withMetadata: false
-            }
-        ))
-        .pipe(gulp.dest('./public/img'))
+    return src('img-src/bg.jpg')
+        .pipe(imagemin())
+        .pipe(dest('./public/img'))
         .pipe(browsersync.stream());
 }
 
 function img() {
-  return gulp.src('img/**/*')
-    .pipe(gulp.dest('./public/img'));
+  return src('img/**/*')
+    .pipe(dest('./public/img'));
 }
 
 function static() {
-  return gulp.src(['index.html', 'favicon.ico'])
-      .pipe(gulp.dest('./public'))
+  return src(['index.html', 'favicon.ico'])
+      .pipe(dest('./public'))
 }
 
-// Tasks
-gulp.task("css", css);
-gulp.task("js", js);
-gulp.task("static", static);
-
-// Images
-gulp.task('img', img);
-gulp.task('imgGen', imgGen);
-
-
 // BrowserSync
-function browserSync(done) {
+function serve(done) {
   browsersync.init({
     server: {
       baseDir: "./public/"
@@ -147,23 +124,17 @@ function browserSync(done) {
   done();
 }
 
-// BrowserSync Reload
-function browserSyncReload(done) {
-  browsersync.reload();
-  done();
-}
-
 // Watch files
 function watchFiles() {
-  gulp.watch("./scss/**/*", css);
-  gulp.watch(["./js/**/*.js", "!./js/*.min.js"], js);
-  gulp.watch("./img-src/*", imgGen);
-  gulp.watch("./img/*", img);
-  gulp.watch("./**/*.html", browserSyncReload);
-  gulp.watch(["index.html", "./favicon.ico"], gulp.series(static, browserSyncReload));
+  watch("./scss/**/*", css);
+  watch(["./js/**/*.js", "!./js/*.min.js"], js);
+  watch("./img-src/*", imgGen);
+  watch("./img/*", img);
+  watch("./index.html", static);
+  watch("./favicon.ico",static);
 }
 
-gulp.task("default", gulp.parallel('vendor', css, js, img, imgGen, static));
+const build = parallel(vendor, css, js, imgGen, img, static)
 
-// dev task
-gulp.task("dev", gulp.parallel(watchFiles, browserSync));
+exports.default = build;
+exports.watch = series(build, parallel(watchFiles, serve));
